@@ -1,0 +1,74 @@
+{
+	"users": [
+		{
+			"id": "001",
+			"login": "Dopa",
+			"password": "abc123",
+			"registed_at": "2024-10-19",
+			"role_id": "123"
+		}
+	],
+	"roles": [
+		{
+			"id": 0,
+			"name": "Admin"
+		},
+		{
+			"id": 1,
+			"name": "Moderator"
+		},
+		{
+			"id": 2,
+			"name": "Viewer"
+		},
+		{
+			"id": 3,
+			"name": "Guest"
+		}
+	],
+	"posts": [
+		{
+			"id": "001",
+			"title": "Some small text",
+			"image_url": "https://education.cats.org.uk/media/1244/cat-behaviourist-thumb.png?anchor=center&mode=crop&width=280&height=150&rnd=133431347570000000",
+			"content": "something",
+			"published_at": "2020-10-20"
+		},
+		{
+			"id": "002",
+			"title": "Some small text",
+			"image_url": "https://vet-healthcentre.co.uk/images/pictures/artwork/photo-uploads/cat-looking-out-of-window-black-and-white-(280x150-ffffff).jpg?v=23cd78a4",
+			"content": "something",
+			"published_at": "2020-10-20"
+		},
+		{
+			"id": "003",
+			"title": "Some small text",
+			"image_url": "https://res-2.cloudinary.com/the-university-of-melbourne/image/upload/s--lSvVM7Sx--/c_fill,f_auto,h_150,q_75,w_280/v1/pursuit-uploads/e90/041/60d/e9004160d61bd1c1264a002fc2e084c14912aeaf9dfe9d5d8c22b3d5ba01.jpg",
+			"content": "something",
+			"published_at": "2020-10-20"
+		},
+		{
+			"id": "004",
+			"title": "Some small text",
+			"image_url": "https://www.pethealthnetwork.com/sites/default/files/styles/homepage_feed/public/content/images/thyroid-tumor-surgery-cats-fb-183165828.jpg?itok=qJYgFdW1",
+			"content": "something",
+			"published_at": "2020-10-20"
+		},
+		{
+			"id": "005",
+			"title": "Some small text",
+			"image_url": "https://www.activaproducts.com/image/cache/catalog/Projects/Masked%20Black%20Halloween%20Cat/cat_large_header-280x150-crop.jpg",
+			"content": "something",
+			"published_at": "2020-10-20"
+		},
+		{
+			"id": "006",
+			"title": "Some small text",
+			"image_url": "https://media.datacenterdynamics.com/media/images/GettyImages-1172290687.2e16d0ba.fill-280x150.jpg",
+			"content": "something",
+			"published_at": "2020-10-20"
+		}
+	],
+	"comments": []
+}
