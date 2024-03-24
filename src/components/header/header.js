@@ -29,7 +29,7 @@ export const Header = styled(HeaderContainer)`
 	height: 120px;
 	padding: 20px 40px;
 	background-color: #fff;
-	box-shadow: 0 0 15px #000;
+	box-shadow: 0 -3px 15px #000;
 ` // стилизуем шапку
 
 //const Header = () => ()
