@@ -1,8 +1,11 @@
 import { getUser } from './get-user'
 import { addUser } from './add-user'
-import { createSession } from './create-session'
+import { sessions } from './sessions'
 
 export const server = {
+	async logout(session) {
+		sessions.remove(session)
+	},
 	async authorize(authLogin, authPassword) {
 		const user = await getUser(authLogin) // пользователь с конкретным логином
 
@@ -25,7 +28,12 @@ export const server = {
 		return {
 			// если нет ошибок (ни одно из условий выше не выполнилось), то пользователь получает доступ к методам
 			error: null,
-			res: createSession(user.role_id),
+			res: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user),
+			},
 		}
 	},
 
@@ -43,8 +51,14 @@ export const server = {
 		await addUser(regLogin, regPassword)
 
 		return {
+			// если нет ошибок (ни одно из условий выше не выполнилось), то пользователь получает доступ к методам
 			error: null,
-			res: createSession(user.role_id),
+			res: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user),
+			},
 		}
 	},
 }

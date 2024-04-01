@@ -2,10 +2,10 @@
 	"users": [
 		{
 			"id": "001",
-			"login": "Dopa",
+			"login": "dopa",
 			"password": "abc123",
 			"registed_at": "2024-10-19",
-			"role_id": "123"
+			"role_id": 0
 		}
 	],
 	"roles": [

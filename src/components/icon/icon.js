@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 const IconContainer = (
-	{ className, id }, // className - font-size, margin-right...
+	{ className, id, ...props }, // className - font-size, margin-right...
 ) => (
-	<div className={className}>
+	<div className={className} {...props}>
 		<i className={`fa ${id}`} aria-hidden="true"></i>
 	</div>
 )
