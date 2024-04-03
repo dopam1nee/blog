@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Header, Footer } from './components'
-import { Authorization } from './pages'
+import { Authorization, Registration } from './pages'
 import styled from 'styled-components'
 
 const AppColumn = styled.div`
@@ -25,7 +25,7 @@ export const Blog = () => {
 				<Routes>
 					<Route path="/" element={<div>Main</div>} />
 					<Route path="/login" element={<Authorization />} />
-					<Route path="/register" element={<div>Register</div>} />
+					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<div>Users</div>} />
 					<Route path="/post" element={<div>New post</div>} />
 					<Route path="/post/:postId" element={<div>Post</div>} />

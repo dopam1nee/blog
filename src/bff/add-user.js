@@ -10,4 +10,4 @@ export const addUser = (login, password) =>
 			registed_at: new Date().toISOString().substring(0, 16).replace('T', ' '), // 2024-10-20 15:19
 			role_id: 2,
 		}),
-	})
+	}).then(createdUser => createdUser.json())

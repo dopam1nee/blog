@@ -4,7 +4,7 @@ export const sessions = {
 		// создание сессии
 		const hash = Math.random().toFixed(50) // создали хеш
 
-		this.list[hash] = user // добавили хеш в список
+		this.list[hash] = user // добавили пользователя по хешу
 
 		return hash // вернули хеш
 	},

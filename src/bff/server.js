@@ -38,9 +38,9 @@ export const server = {
 	},
 
 	async register(regLogin, regPassword) {
-		const user = await getUser(regLogin) // пользователь с конкретным логином
+		const existedUser = await getUser(regLogin) // пользователь с конкретным логином
 
-		if (user) {
+		if (existedUser) {
 			// если пользователь найден
 			return {
 				error: 'This username is already taken',
@@ -48,7 +48,8 @@ export const server = {
 			}
 		}
 
-		await addUser(regLogin, regPassword)
+		const user = await addUser(regLogin, regPassword)
+		//console.log(user) 
 
 		return {
 			// если нет ошибок (ни одно из условий выше не выполнилось), то пользователь получает доступ к методам

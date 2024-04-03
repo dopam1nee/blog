@@ -14,11 +14,11 @@ export const createSession = roleId => {
 
 	switch (roleId) {
 		case ROLE.ADMIN: {
-			session.removeComment = removeComment // удалить комментарий
+			session.removeComment = removeComment // добавляем удаление комментария
 			break
 		}
 		case ROLE.MODERATOR: {
-			session.removeComment = removeComment // удалить комментарий
+			session.removeComment = removeComment // добавляем удаление комментария
 			break
 		}
 		case ROLE.VIEWER: {
