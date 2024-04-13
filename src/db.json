@@ -4,28 +4,14 @@
       "id": "001",
       "login": "dopa",
       "password": "abc123",
-      "registed_at": "2024-10-19",
+      "registed_at": "𓅯",
       "role_id": 0
-    },
-    {
-      "login": "dopaa",
-      "password": "abc123",
-      "registed_at": "2024-04-01 20:48",
-      "role_id": 2,
-      "id": "nn6XpHZ"
-    },
-    {
-      "login": "dopaaaa",
-      "password": "abc123",
-      "registed_at": "2024-04-01 20:50",
-      "role_id": 2,
-      "id": "3IGcQ_-"
     },
     {
       "login": "monty",
       "password": "abc123",
       "registed_at": "2024-04-01 20:51",
-      "role_id": 2,
+      "role_id": 1,
       "id": "nylZj52"
     }
   ],
@@ -40,7 +26,7 @@
     },
     {
       "id": 2,
-      "name": "Viewer"
+      "name": "Reader"
     },
     {
       "id": 3,

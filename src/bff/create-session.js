@@ -1,3 +1,6 @@
+// !!! ЭТОТ ФАЙЛ НЕ НУЖЕН !!!
+// Сессию создаём в sessions.js с помощью функции create
+
 import { removeComment } from './session'
 import { ROLE } from '../constants'
 
