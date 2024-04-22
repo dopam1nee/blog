@@ -1,1 +1,25 @@
-export { server } from './server'
+import * as server from './operations'
+
+export { server }
+
+// server.js
+
+//import {
+//	authorize,
+//	logout,
+//	register,
+//	fetchUsers,
+//	fetchRoles,
+//	updateUserRole,
+//	removeUser,
+//} from './operations'
+
+//export const server = {
+//	authorize,
+//	logout,
+//	register,
+//	fetchUsers,
+//	fetchRoles,
+//	updateUserRole,
+//	removeUser,
+//}

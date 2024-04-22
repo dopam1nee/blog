@@ -1,21 +1,30 @@
+import { addSession, deleteSession, getSession, getUser } from './api'
+
 export const sessions = {
-	list: {}, // сессии пользователей
+	//list: {}, // сессии пользователей
 	create(user) {
 		// создание сессии
 		const hash = Math.random().toFixed(50) // создали хеш
-
-		this.list[hash] = user // добавили пользователя по хешу
+		console.log('sessions create', user)
+		addSession(hash, user)
+		//this.list[hash] = user // добавили пользователя по хешу
 
 		return hash // вернули хеш
 	},
-	remove(hash) {
+	async remove(hash) {
 		// выход из сессии
-		delete this.list[hash]
-	},
-	access(hash, accessRoles) {
-		const user = this.list[hash]
+		const session = await getSession(hash)
 
-		return !!user && accessRoles.includes(user.roleId)
+		if (!session) return
+
+		deleteSession(session.id)
+		//delete this.list[hash]
+	},
+	async access(hash, accessRoles) {
+		const dbSession = await getSession(hash)
+		//const user = this.list[hash]
+		console.log('sessions access', hash, accessRoles, dbSession)
+		return !!dbSession.user && accessRoles.includes(dbSession.user.roleId)
 		// !!user - конвертирует user в булевое значение, accessRoles - проверяет наличие роли в массиве ролей
 	},
 }

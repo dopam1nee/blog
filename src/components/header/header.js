@@ -30,6 +30,7 @@ export const Header = styled(HeaderContainer)`
 	padding: 20px 40px;
 	background-color: #fff;
 	box-shadow: 0 -3px 15px #000;
+	z-index: 10;
 ` // стилизуем шапку
 
 //const Header = () => ()

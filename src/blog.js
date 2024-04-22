@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Header, Footer } from './components'
-import { Authorization, Registration, Users } from './pages'
+import { Authorization, Registration, Users, Post } from './pages'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { setUser } from './actions'
 
 const AppColumn = styled.div`
 	display: flex;
@@ -14,10 +16,27 @@ const AppColumn = styled.div`
 	background-color: #fff;
 `
 const Page = styled.div`
-	padding: 120px 0;
+	padding: 120px 0 20px;
 ` // вызвали стилизованный компонент с тегом div (функцию объекта styled)
 
 export const Blog = () => {
+	const dispatch = useDispatch()
+
+	useLayoutEffect(() => {
+		const currentUserDataJSON = sessionStorage.getItem('userData')
+
+		if (!currentUserDataJSON) return // если пользователя нет, то ничего не делаем
+
+		const currentUserData = JSON.parse(currentUserDataJSON)
+
+		dispatch(
+			setUser({
+				...currentUserData,
+				roleId: Number(currentUserData), // важно, чтобы значение roleId было числом, а не строкой, в которую преобразует sessionStorage (метод браузера)
+			}),
+		)
+	}, [dispatch]) // отличие от useEffect в том, что useEffect вызывается только после отрисовки разметки, а useLayoutEffect вызывается до отрисовки, то есть выполняет действие до рендера страницы
+
 	return (
 		<AppColumn>
 			<Header />
@@ -28,7 +47,7 @@ export const Blog = () => {
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/post" element={<div>New post</div>} />
-					<Route path="/post/:postId" element={<div>Post</div>} />
+					<Route path="/post/:id" element={<Post />} />
 					<Route path="*" element={<div>Error</div>} />
 				</Routes>
 			</Page>

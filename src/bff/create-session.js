@@ -24,7 +24,7 @@ export const createSession = roleId => {
 			session.removeComment = removeComment // добавляем удаление комментария
 			break
 		}
-		case ROLE.VIEWER: {
+		case ROLE.READER: {
 			break
 		}
 		default:

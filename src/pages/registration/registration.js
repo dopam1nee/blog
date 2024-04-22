@@ -72,6 +72,7 @@ const RegistrationContainer = ({ className }) => {
 			}
 
 			dispatch(setUser(res))
+			sessionStorage.setItem('userData', JSON.stringify(res))
 		})
 	}
 

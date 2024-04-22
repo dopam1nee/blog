@@ -1,10 +1,8 @@
-import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 import { Icon } from '../../../../components'
 import { TableRow } from '../table-row/table-row' // импортируем так, а не через components, потому что в index.js (components) также реэкспортируется UserRow, то есть здесь файл будет импортировать самого себя, из-за чего приложение может возникнуть циклическся зависимость, то есть приложение может зависнуть
-import styled from 'styled-components'
-import { useState } from 'react'
-import { saveUserRole } from '../../../../actions'
 import { useServerRequest } from '../../../../hooks'
+import styled from 'styled-components'
 
 const UserRowContainer = ({
 	className,
@@ -46,7 +44,7 @@ const UserRowContainer = ({
 					</select>
 
 					<Icon
-						className="fa-solid fa-floppy-disk"
+						id="fa-solid fa-floppy-disk"
 						margin="0 0 0 10px"
 						disabled={isSaveButtonDisabled}
 						onClick={() => onRoleSave(id, selectedRoleId)}
