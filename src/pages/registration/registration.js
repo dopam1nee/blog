@@ -65,7 +65,6 @@ const RegistrationContainer = ({ className }) => {
 	const onSubmit = ({ login, password }) => {
 		// поля name (register)
 		server.register(login, password).then(({ error, res }) => {
-			//console.log(res)
 			if (error) {
 				setServerError(`Request error: ${error}`)
 				return // если есть ошибка, прерываем работу кода

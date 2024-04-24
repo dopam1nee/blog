@@ -13,7 +13,6 @@ export const register = async (regLogin, regPassword) => {
 	}
 
 	const user = await addUser(regLogin, regPassword)
-	//console.log(user)
 
 	return {
 		// если нет ошибок (ни одно из условий выше не выполнилось), то пользователь получает доступ к методам

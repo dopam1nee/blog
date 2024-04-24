@@ -1,11 +1,11 @@
-import { addSession, deleteSession, getSession, getUser } from './api'
+import { addSession, deleteSession, getSession } from './api'
 
 export const sessions = {
 	//list: {}, // сессии пользователей
 	create(user) {
 		// создание сессии
 		const hash = Math.random().toFixed(50) // создали хеш
-		console.log('sessions create', user)
+
 		addSession(hash, user)
 		//this.list[hash] = user // добавили пользователя по хешу
 
@@ -23,7 +23,7 @@ export const sessions = {
 	async access(hash, accessRoles) {
 		const dbSession = await getSession(hash)
 		//const user = this.list[hash]
-		console.log('sessions access', hash, accessRoles, dbSession)
+
 		return !!dbSession.user && accessRoles.includes(dbSession.user.roleId)
 		// !!user - конвертирует user в булевое значение, accessRoles - проверяет наличие роли в массиве ролей
 	},
