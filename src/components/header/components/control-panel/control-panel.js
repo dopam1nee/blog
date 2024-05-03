@@ -56,10 +56,10 @@ const ControlPanelContainer = ({ className }) => {
 			<RightAligned>
 				<Icon id="fa-backward" margin="10px 0 0 0" onClick={() => navigate(-1)} />
 				<Link to="/post">
-					<Icon id="fa-solid fa-file" margin="10px 0 0 13px" />
+					<Icon id="fa-solid fa-file" margin="10px 0 0 16px" />
 				</Link>
 				<Link to="/users">
-					<Icon id="fa-users" margin="10px 0 0 13px" />
+					<Icon id="fa-users" margin="10px 0 0 16px" />
 				</Link>
 			</RightAligned>
 		</div>

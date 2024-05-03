@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const IconContainer = (
-	{ className, id, ...props }, // className - font-size, margin-right...
+	{ className, id, inactive, ...props }, // className - font-size, margin-right...
 ) => (
 	<div className={className} {...props}>
 		<i className={`fa ${id}`} aria-hidden="true"></i>
@@ -14,6 +14,6 @@ export const Icon = styled(IconContainer)`
 	color: ${({ disabled }) => (disabled ? '#ccc' : '#000')};
 
 	&:hover {
-		cursor: pointer;
+		cursor: ${({ inactive }) => (inactive ? 'default' : 'pointer')};
 	}
 ` // функция всегда принимает все пропсы, которые передают в контейнер

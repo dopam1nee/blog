@@ -4,8 +4,8 @@ import { sessions } from '../sessions'
 
 export const removePostComment = async (hash, postId, id) => {
 	const accessRoles = [ROLE.ADMIN, ROLE.MODERATOR]
+
 	const access = await sessions.access(hash, accessRoles)
-	console.log(hash, postId, id)
 
 	if (!access) {
 		return {
