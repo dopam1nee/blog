@@ -2,8 +2,8 @@ import { useDispatch } from 'react-redux'
 import { CLOSE_MODAL, openModal, removePostAsync } from '../../../../actions'
 import { useServerRequest } from '../../../../hooks'
 import { Icon } from '../../../../components'
-import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 	const dispatch = useDispatch()
@@ -46,7 +46,6 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 						size="21px"
 						margin="0 0 0 7px"
 						onClick={() => onPostRemove(id)}
-						style={{ width: '20px', height: '20px', backgroundColor: 'black' }}
 					/>
 				)}
 			</div>

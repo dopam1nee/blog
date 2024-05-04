@@ -8,10 +8,12 @@ export const useServerRequest = () => {
 
 	return useCallback(
 		(operation, ...params) => {
-			const request = ['register', 'authorize', 'fetchPost'].includes(operation)
+			const request = ['register', 'authorize', 'fetchPost', 'fetchPosts'].includes(
+				operation,
+			)
 				? params
 				: [session, ...params]
-			// для операций register и authorize не отправляем сессию, для других - отправляем
+			// для операций register, authorize... не отправляем сессию, для других - отправляем
 
 			return server[operation](...request)
 		},

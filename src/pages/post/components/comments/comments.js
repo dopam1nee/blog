@@ -28,7 +28,6 @@ const CommentsContainer = ({ className, comments, postId }) => {
 					onChange={({ target }) => setNewComment(target.value)}
 				></textarea>
 				<Icon
-					className="button"
 					id="fa-solid fa-paper-plane"
 					margin="0 0 0 10px"
 					size="18px"
@@ -66,11 +65,5 @@ export const Comments = styled(CommentsContainer)`
 		height: 120px;
 		font-size: 18px;
 		resize: none;
-	}
-
-	& .button {
-		background-color: #333;
-		width: 20px;
-		height: 20px;
 	}
 `

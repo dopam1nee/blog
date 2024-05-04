@@ -38,9 +38,8 @@ const CommentContainer = ({
 				<div className="information-panel">
 					<div className="author">
 						<Icon
-							className="button"
 							inactive={true}
-							id="fa-solid fa-circle-user"
+							id="fa-user-circle-o "
 							margin="0"
 							size="18px"
 							onClick={() => {}}
@@ -49,9 +48,8 @@ const CommentContainer = ({
 					</div>
 					<div className="published-at">
 						<Icon
-							className="button1"
 							inactive={true}
-							id="fa-solid fa-calendar"
+							id="fa-calendar"
 							margin="0 0 0 10px"
 							size="18px"
 							onClick={() => {}}
@@ -62,8 +60,7 @@ const CommentContainer = ({
 				<div className="comment-text">{content}</div>
 			</div>
 			<Icon
-				className="button2"
-				id="fa-solid fa-trash"
+				id="fa-trash"
 				margin="0 0 0 10px"
 				size="21px"
 				onClick={() => onCommentRemove(id)}
@@ -93,23 +90,5 @@ export const Comment = styled(CommentContainer)`
 
 	& .published-at {
 		display: flex;
-	}
-
-	& .button {
-		background-color: #666;
-		width: 20px;
-		height: 20px;
-	}
-
-	& .button1 {
-		background-color: #999;
-		width: 20px;
-		height: 20px;
-	}
-
-	& .button2 {
-		background-color: #abc378;
-		width: 20px;
-		height: 20px;
 	}
 `

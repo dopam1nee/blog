@@ -54,12 +54,7 @@ const PostFormContainer = ({
 				publishedAt={publishedAt}
 				margin="20px 0"
 				editButton={
-					<Icon
-						id="fa-solid fa-floppy-disk"
-						size="21px"
-						onClick={onSave}
-						style={{ width: '20px', height: '20px', backgroundColor: 'red' }}
-					/>
+					<Icon id="fa-solid fa-floppy-disk" size="21px" onClick={onSave} />
 				}
 			/>
 			<div

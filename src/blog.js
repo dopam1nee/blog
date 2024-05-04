@@ -1,10 +1,10 @@
 import React, { useLayoutEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Header, Footer, Modal } from './components'
-import { Authorization, Registration, Users, Post } from './pages'
-import styled from 'styled-components'
+import { Authorization, Registration, Users, Post, Main } from './pages'
 import { useDispatch } from 'react-redux'
 import { setUser } from './actions'
+import styled from 'styled-components'
 
 const AppColumn = styled.div`
 	display: flex;
@@ -42,7 +42,7 @@ export const Blog = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path="/" element={<div>Main</div>} />
+					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />

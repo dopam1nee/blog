@@ -23,7 +23,6 @@ const PostContentContainer = ({
 						size="21px"
 						margin="0 10px 0 0"
 						onClick={() => navigate(`/post/${id}/edit`)}
-						style={{ width: '20px', height: '20px', backgroundColor: 'red' }}
 					/>
 				}
 			/>
