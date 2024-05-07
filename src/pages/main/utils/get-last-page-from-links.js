@@ -1,6 +1,6 @@
 export const getLastPageFromLinks = links => {
-	const result = links.match(/_page=(\d{1,4})&_limit=\d{1,3}>; rel="last"/)
+	const result = links.match(/_page=(\d{1,4})&_limit=\d{1,3}>; rel="last"/) || [] // TODO []
 
-	return Number(result[1])
+	return Number(result[1]) || []
 	// [0] - вся строка, [1] - первая скобочная группа (\d[1,4])
 }
