@@ -21,3 +21,7 @@ export const Input = styled(InputContainer)`
 	border: 1px solid #000;
 	border-radius: 5px;
 ` // width вытянули из пропсов компонента, который принимает этот width.
+
+Input.propTypes = {
+	width: PropTypes.string,
+}

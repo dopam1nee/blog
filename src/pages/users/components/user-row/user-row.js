@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { Icon } from '../../../../components'
 import { TableRow } from '../table-row/table-row' // импортируем так, а не через components, потому что в index.js (components) также реэкспортируется UserRow, то есть здесь файл будет импортировать самого себя, из-за чего приложение может возникнуть циклическся зависимость, то есть приложение может зависнуть
 import { useServerRequest } from '../../../../hooks'
+import { PROP_TYPE } from '../../../../constants'
 import styled from 'styled-components'
 
 const UserRowContainer = ({
@@ -65,3 +67,12 @@ export const UserRow = styled(UserRowContainer)`
 		font-size: 16px;
 	}
 `
+
+UserRow.propTypes = {
+	id: PropTypes.string.isRequired,
+	login: PropTypes.string.isRequired,
+	registeredAt: PropTypes.string.isRequired,
+	roleId: PROP_TYPE.ROLE_ID.isRequired,
+	roles: PropTypes.arrayOf(PROP_TYPE.ROLE).isRequired,
+	onUserRemove: PropTypes.func.isRequired,
+}

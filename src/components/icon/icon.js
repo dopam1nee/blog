@@ -18,3 +18,8 @@ export const Icon = styled(IconContainer)`
 		cursor: ${({ inactive }) => (inactive ? 'default' : 'pointer')};
 	}
 ` // функция всегда принимает все пропсы, которые передают в контейнер
+
+Icon.propTypes = {
+	id: PropTypes.string.isRequired,
+	inactive: PropTypes.bool,
+}

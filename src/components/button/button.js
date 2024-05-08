@@ -23,3 +23,8 @@ export const Button = styled(ButtonContainer)`
 		cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 	}
 `
+
+Button.propTypes = {
+	children: PropTypes.node.isRequired, // node - может быть любым React-элементом (строка, число, массив, фрагмент, null, undefiend)
+	width: PropTypes.string,
+}

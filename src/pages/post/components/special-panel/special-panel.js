@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { CLOSE_MODAL, openModal, removePostAsync } from '../../../../actions'
 import { useServerRequest } from '../../../../hooks'
 import { Icon } from '../../../../components'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 import { checkAccess } from '../../../../utils'
 import { ROLE } from '../../../../constants'
 import { selectUserRole } from '../../../../selectors'
+import styled from 'styled-components'
 
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 	const dispatch = useDispatch()
@@ -80,3 +81,9 @@ export const SpecialPanel = styled(SpecialPanelContainer)`
 		top: -1px;
 	}
 `
+
+SpecialPanel.propTypes = {
+	id: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	editButton: PropTypes.node.isRequired,
+}
