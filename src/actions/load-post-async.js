@@ -1,7 +1,11 @@
 import { setPostData } from './set-post-data'
 
-export const loadPostAsync = (requestServer, postId) => dispatch => {
+export const loadPostAsync = (requestServer, postId) => dispatch =>
 	requestServer('fetchPost', postId).then(postData => {
-		dispatch(setPostData(postData.res))
+		if (postData.res) {
+			// если есть ответ, устанавливаем данные
+			dispatch(setPostData(postData.res))
+		}
+
+		return postData // возвращаем для обработки данных
 	})
-}

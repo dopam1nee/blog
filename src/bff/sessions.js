@@ -24,7 +24,7 @@ export const sessions = {
 		const dbSession = await getSession(hash)
 		//const user = this.list[hash]
 
-		return !!dbSession.user && accessRoles.includes(dbSession.user.roleId)
+		return !!dbSession?.user && accessRoles.includes(dbSession.user.roleId)
 		// !!user - конвертирует user в булевое значение, accessRoles - проверяет наличие роли в массиве ролей
 	},
 }

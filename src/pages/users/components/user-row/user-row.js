@@ -44,9 +44,10 @@ const UserRowContainer = ({
 					</select>
 
 					<Icon
-						id="fa-solid fa-floppy-disk"
+						id="fa-floppy-o"
 						margin="0 0 0 10px"
 						disabled={isSaveButtonDisabled}
+						inactive={isSaveButtonDisabled}
 						onClick={() => onRoleSave(id, selectedRoleId)}
 					/>
 				</div>

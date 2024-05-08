@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
-import { H2, Content } from '../../components'
+import { H2, PrivateContent } from '../../components'
 import { useServerRequest } from '../../hooks/use-server-request'
 import { TableRow, UserRow } from './components'
 import { ROLE } from '../../constants'
+import { checkAccess } from '../../utils'
+import { useSelector } from 'react-redux'
+import { selectUserRole } from '../../selectors'
 import styled from 'styled-components'
 
 const UsersContainer = ({ className }) => {
@@ -11,9 +14,13 @@ const UsersContainer = ({ className }) => {
 	const [errorMessage, setErrorMessage] = useState(null)
 	const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false)
 
+	const userRole = useSelector(selectUserRole)
+
 	const requestServer = useServerRequest() // всегда будет с одной и той же ссылкой для одного и того же пользователя
 
 	useEffect(() => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) return
+
 		Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
 			([userRes, rolesRes]) => {
 				if (userRes.error || rolesRes.error) {
@@ -25,17 +32,19 @@ const UsersContainer = ({ className }) => {
 				setRoles(rolesRes.res)
 			},
 		)
-	}, [requestServer, shouldUpdateUserList]) // не будет вызываться повторно, пока не изменится пользователь
+	}, [requestServer, shouldUpdateUserList, userRole]) // не будет вызываться повторно, пока не изменится пользователь
 
 	const onUserRemove = userId => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) return
+
 		requestServer('removeUser', userId).then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList)
 		})
 	}
 
 	return (
-		<div className={className}>
-			<Content error={errorMessage}>
+		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+			<div className={className}>
 				<H2>Users</H2>
 				<div>
 					<TableRow>
@@ -55,8 +64,8 @@ const UsersContainer = ({ className }) => {
 						/>
 					))}
 				</div>
-			</Content>
-		</div>
+			</div>
+		</PrivateContent>
 	)
 }
 

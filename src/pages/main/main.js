@@ -12,8 +12,6 @@ const MainContainer = ({ className }) => {
 	const [searchPhrase, setSearchPhrase] = useState('')
 	const [shouldSearch, setShouldSearch] = useState(false)
 
-	console.log('lastPage', lastPage)
-
 	const requestServer = useServerRequest()
 
 	useEffect(() => {

@@ -7,7 +7,7 @@ export const authorize = async (authLogin, authPassword) => {
 	if (!user) {
 		// если пользователь не найден
 		return {
-			error: 'No such user has been found',
+			error: 'Invalid username',
 			res: null,
 		}
 	}

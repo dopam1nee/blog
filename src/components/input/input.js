@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { forwardRef } from 'react' // для передачи пропа ref (это необычный проп)
 import styled from 'styled-components'
 

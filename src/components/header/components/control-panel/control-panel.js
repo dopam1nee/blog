@@ -9,6 +9,7 @@ import {
 } from '../../../../selectors'
 import { logout } from '../../../../actions'
 import styled from 'styled-components'
+import { checkAccess } from '../../../../utils'
 
 const RightAligned = styled.div`
 	display: flex;
@@ -34,6 +35,8 @@ const ControlPanelContainer = ({ className }) => {
 		sessionStorage.removeItem('userData')
 	}
 
+	const isAdmin = checkAccess([ROLE.ADMIN], roleId) // TODO не работает отображение кнопок после обновления страницы
+
 	return (
 		<div className={className}>
 			<RightAligned>
@@ -44,19 +47,22 @@ const ControlPanelContainer = ({ className }) => {
 				) : (
 					<>
 						<UserName>{login}</UserName>
-
 						<Icon id="fa-sign-out" margin="0 0 0 10px" onClick={onLogout} />
 					</>
 				)}
 			</RightAligned>
 			<RightAligned>
 				<Icon id="fa-backward" margin="10px 0 0 0" onClick={() => navigate(-1)} />
-				<Link to="/post">
-					<Icon id="fa-solid fa-file" margin="10px 0 0 16px" />
-				</Link>
-				<Link to="/users">
-					<Icon id="fa-users" margin="10px 0 0 16px" />
-				</Link>
+				{isAdmin && (
+					<>
+						<Link to="/post">
+							<Icon id="fa-solid fa-file" margin="10px 0 0 16px" />
+						</Link>
+						<Link to="/users">
+							<Icon id="fa-users" margin="10px 0 0 16px" />
+						</Link>
+					</>
+				)}
 			</RightAligned>
 		</div>
 	)
