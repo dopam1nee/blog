@@ -21,7 +21,7 @@ const Page = styled.div`
 	padding: 120px 0 20px;
 ` // вызвали стилизованный компонент с тегом div (функцией объекта styled)
 
-export const Blog = () => {
+export const App = () => {
 	const dispatch = useDispatch()
 
 	useLayoutEffect(() => {
