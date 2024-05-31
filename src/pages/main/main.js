@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useServerRequest } from '../../hooks'
 import { Pagination, PostCard, Search } from './components'
 import { PAGINATION_LIMIT } from '../../constants'
-import { getLastPageFromLinks, debounce } from './utils'
+import { debounce } from './utils'
 import styled from 'styled-components'
+import { request } from '../../utils/request'
 
 const MainContainer = ({ className }) => {
 	const [posts, setPosts] = useState([])
@@ -12,18 +12,16 @@ const MainContainer = ({ className }) => {
 	const [searchPhrase, setSearchPhrase] = useState('')
 	const [shouldSearch, setShouldSearch] = useState(false)
 
-	const requestServer = useServerRequest()
-
 	useEffect(() => {
-		requestServer('fetchPosts', searchPhrase, page, PAGINATION_LIMIT).then(
-			({ res: { posts, links } }) => {
-				// если ({ res }) вместо ({ res: { posts, links } }), тогда
-				setPosts(posts) // res.posts
-				setLastPage(getLastPageFromLinks(links || '')) // TODO ''; res.links
-			},
-		)
+		request(
+			`/posts?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`,
+		).then(({ data: { posts, lastPage } }) => {
+			// если ({ res }) вместо ({ res: { posts, links } }), тогда
+			setPosts(posts) // res.posts
+			setLastPage(lastPage) // TODO ''; res.links
+		})
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [requestServer, page, shouldSearch])
+	}, [page, shouldSearch])
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 1000), [])
 
@@ -41,14 +39,14 @@ const MainContainer = ({ className }) => {
 				<Search searchPhrase={searchPhrase} onChange={onSearch} />
 				{posts.length ? (
 					<div className="post-list">
-						{posts.map(({ id, title, imageUrl, publishedAt, commentsCount }) => (
+						{posts.map(({ id, title, imageUrl, publishedAt, comments }) => (
 							<PostCard
 								key={id}
 								id={id}
 								title={title}
 								imageUrl={imageUrl}
 								publishedAt={publishedAt}
-								commentsCount={commentsCount}
+								commentsCount={comments.length}
 							/>
 						))}
 					</div>

@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { Icon } from '../../../../components'
 import { TableRow } from '../table-row/table-row' // импортируем так, а не через components, потому что в index.js (components) также реэкспортируется UserRow, то есть здесь файл будет импортировать самого себя, из-за чего приложение может возникнуть циклическся зависимость, то есть приложение может зависнуть
-import { useServerRequest } from '../../../../hooks'
 import { PROP_TYPE } from '../../../../constants'
 import styled from 'styled-components'
+import { request } from '../../../../utils/request'
 
 const UserRowContainer = ({
 	className,
@@ -17,14 +17,13 @@ const UserRowContainer = ({
 }) => {
 	const [initialRoleId, setInitialRoleId] = useState(userRoleId)
 	const [selectedRoleId, setSelectedRoleId] = useState(userRoleId)
-	const requestServer = useServerRequest()
 
 	const onRoleChange = ({ target }) => {
 		setSelectedRoleId(Number(target.value))
 	}
 
 	const onRoleSave = (userId, newUserRoleId) => {
-		requestServer('updateUserRole', userId, newUserRoleId).then(() => {
+		request(`/users/${userId}`, 'PATCH', { roleId: newUserRoleId }).then(() => {
 			setInitialRoleId(newUserRoleId)
 		})
 	}

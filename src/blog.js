@@ -34,7 +34,7 @@ export const Blog = () => {
 		dispatch(
 			setUser({
 				...currentUserData,
-				roleId: Number(currentUserData), // важно, чтобы значение roleId было числом, а не строкой, в которую преобразует sessionStorage (метод браузера)
+				roleId: Number(currentUserData.roleId), // важно, чтобы значение roleId было числом, а не строкой, в которую преобразует sessionStorage (метод браузера)
 			}),
 		)
 	}, [dispatch]) // отличие от useEffect в том, что useEffect вызывается только после отрисовки разметки, а useLayoutEffect вызывается до отрисовки, то есть выполняет действие до рендера страницы

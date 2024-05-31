@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { H2, PrivateContent } from '../../components'
-import { useServerRequest } from '../../hooks/use-server-request'
 import { TableRow, UserRow } from './components'
 import { ROLE } from '../../constants'
 import { checkAccess } from '../../utils'
 import { useSelector } from 'react-redux'
 import { selectUserRole } from '../../selectors'
 import styled from 'styled-components'
+import { request } from '../../utils/request'
 
 const UsersContainer = ({ className }) => {
 	const [users, setUsers] = useState([])
@@ -16,28 +16,26 @@ const UsersContainer = ({ className }) => {
 
 	const userRole = useSelector(selectUserRole)
 
-	const requestServer = useServerRequest() // всегда будет с одной и той же ссылкой для одного и того же пользователя
-
 	useEffect(() => {
 		if (!checkAccess([ROLE.ADMIN], userRole)) return
 
-		Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
+		Promise.all([request('/users'), request('/users/roles')]).then(
 			([userRes, rolesRes]) => {
 				if (userRes.error || rolesRes.error) {
 					setErrorMessage(userRes.error || rolesRes.error)
 					return
 				}
 
-				setUsers(userRes.res)
-				setRoles(rolesRes.res)
+				setUsers(userRes.data)
+				setRoles(rolesRes.data)
 			},
 		)
-	}, [requestServer, shouldUpdateUserList, userRole]) // не будет вызываться повторно, пока не изменится пользователь
+	}, [shouldUpdateUserList, userRole]) // не будет вызываться повторно, пока не изменится пользователь
 
 	const onUserRemove = userId => {
 		if (!checkAccess([ROLE.ADMIN], userRole)) return
 
-		requestServer('removeUser', userId).then(() => {
+		request(`/users/${userId}`, 'DELETE').then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList)
 		})
 	}

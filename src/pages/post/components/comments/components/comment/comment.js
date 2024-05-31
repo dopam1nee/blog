@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon } from '../../../../../../components'
-import { useServerRequest } from '../../../../../../hooks'
 import {
 	CLOSE_MODAL,
 	openModal,
@@ -20,7 +19,6 @@ const CommentContainer = ({
 	publishedAt,
 }) => {
 	const dispatch = useDispatch()
-	const requestServer = useServerRequest()
 	const userRole = useSelector(selectUserRole)
 
 	const onCommentRemove = id => {
@@ -28,7 +26,7 @@ const CommentContainer = ({
 			openModal({
 				text: 'Delete the comment?',
 				onConfirm: () => {
-					dispatch(removeCommentAsync(requestServer, postId, id))
+					dispatch(removeCommentAsync(postId, id))
 					dispatch(CLOSE_MODAL)
 				},
 				onCancel: () => dispatch(CLOSE_MODAL),

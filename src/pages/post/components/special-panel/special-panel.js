@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { CLOSE_MODAL, openModal, removePostAsync } from '../../../../actions'
-import { useServerRequest } from '../../../../hooks'
 import { Icon } from '../../../../components'
 import { useNavigate } from 'react-router-dom'
 import { checkAccess } from '../../../../utils'
@@ -12,7 +11,6 @@ import styled from 'styled-components'
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const requestServer = useServerRequest()
 	const userRole = useSelector(selectUserRole)
 
 	const onPostRemove = id => {
@@ -20,7 +18,7 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 			openModal({
 				text: 'Delete the post?',
 				onConfirm: () => {
-					dispatch(removePostAsync(requestServer, id)).then(() => {
+					dispatch(removePostAsync(id)).then(() => {
 						navigate('/')
 					})
 					dispatch(CLOSE_MODAL)
@@ -30,7 +28,7 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 		)
 	}
 
-	const isAdmin = checkAccess([ROLE.ADMIN], userRole)
+	const isAdmin = checkAccess([ROLE.ADMIN], userRole) // TODO не работает отображение кнопок после обновления страницы
 
 	return (
 		<div className={className}>

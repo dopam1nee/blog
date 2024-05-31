@@ -1,11 +1,11 @@
 {
   "users": [
     {
-      "id": "001",
       "login": "dopa",
       "password": "abc123",
       "registed_at": "𓅯",
-      "role_id": 0
+      "role_id": 0,
+      "id": "001"
     },
     {
       "login": "monty",
@@ -22,7 +22,7 @@
       "id": "rM8tA2O"
     },
     {
-      "login": "nnew",
+      "login": "new",
       "password": "abc123",
       "registed_at": "2024-05-07 14:35",
       "role_id": 2,
@@ -344,6 +344,28 @@
         "roleId": 0
       },
       "id": 12
+    },
+    {
+      "hash": "0.57163730140600232942915681633166968822479248046875",
+      "user": {
+        "id": "001",
+        "login": "dopa",
+        "password": "abc123",
+        "registeredAt": "𓅯",
+        "roleId": 0
+      },
+      "id": 13
+    },
+    {
+      "hash": "0.24325225376118564390992560220183804631233215332031",
+      "user": {
+        "id": "001",
+        "login": "dopa",
+        "password": "abc123",
+        "registeredAt": "𓅯",
+        "roleId": 0
+      },
+      "id": 14
     }
   ]
 }

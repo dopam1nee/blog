@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useMatch, useParams } from 'react-router-dom'
 import { PostContent, Comments, PostForm } from './components'
 import { RESET_POST_DATA, loadPostAsync } from '../../actions'
-import { useServerRequest } from '../../hooks'
 import { selectPost } from '../../selectors'
 import { Error, PrivateContent } from '../../components'
 import { ROLE } from '../../constants'
@@ -17,7 +16,6 @@ const PostContainer = ({ className }) => {
 	const params = useParams()
 	const isCreating = !!useMatch('/post') // вместо объекта - true / false
 	const isEditing = !!useMatch('/post/:id/edit') // вместо объекта - true / false
-	const requestServer = useServerRequest()
 	const post = useSelector(selectPost)
 
 	useLayoutEffect(() => {
@@ -30,17 +28,17 @@ const PostContainer = ({ className }) => {
 			return
 		}
 
-		dispatch(loadPostAsync(requestServer, params.id)).then(postData => {
+		dispatch(loadPostAsync(params.id)).then(postData => {
 			setError(postData.error)
 			setIsLoading(false)
 		})
-	}, [dispatch, requestServer, params.id, isCreating])
+	}, [dispatch, params.id, isCreating])
 
 	if (isLoading) return null
 
 	const SpecificPostPage =
 		isCreating || isEditing ? (
-			<PrivateContent access={[ROLE.ADMIN]}>
+			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
 				<div className={className}>
 					<PostForm post={post} />
 				</div>
